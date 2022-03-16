@@ -1,10 +1,15 @@
 package model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +20,10 @@ public class Categoria {
 	private int codigo;
 	@Column(length = 100)
 	private String nome;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id")
+	private List<Produto> produtos;
 	
 	public int getCodigo() {
 		return codigo;
@@ -27,5 +36,12 @@ public class Categoria {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
-	}		
+	}
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+	public List<Produto> getProdutos() {
+		return this.produtos;
+	}
+
 }
