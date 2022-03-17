@@ -21,11 +21,11 @@ public class Categoria {
 	@Column(length = 100)
 	private String nome;
 
-	// @OneToMany(
-	// 	mappedBy = "categoria",
-	// 	cascade = CascadeType.ALL
-	// )
-	// private List<Produto> produtos;
+	@OneToMany(
+		mappedBy = "categoria",
+		cascade = CascadeType.ALL
+	)
+	private List<Produto> produtos;
 	
 	public int getCodigo() {
 		return codigo;
@@ -39,11 +39,11 @@ public class Categoria {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	// public void setProdutos(List<Produto> produtos) {
-	// 	this.produtos = produtos;
-	// }
-	// public List<Produto> getProdutos() {
-	// 	return this.produtos;
-	// }
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+	public List<Produto> getProdutos() {
+		return this.produtos;
+	}
 
 }
