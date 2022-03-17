@@ -1,0 +1,64 @@
+package business;
+
+import java.util.List;
+import java.util.Objects;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+
+import exceptions.ProdutoException;
+import model.Categoria;
+import model.Produto;
+import repository.ProdutoRepository;
+import repository.RepositorySession;
+
+@Stateless
+public class ProdutoService {
+    @EJB
+    private RepositorySession repository;
+    
+    @EJB
+	private CategoriaService categoriaService;
+
+    private ProdutoRepository produtoRepository;
+
+    @PostConstruct
+    public void initialize() {
+        produtoRepository = repository.getProdutoRepository();
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void inserir(String nome, Float valor, int idCategoria) throws Exception, ProdutoException {
+        Categoria categoria = categoriaService.porCodigo(idCategoria);
+        if (Objects.isNull(categoria)) {
+            throw new ProdutoException("Categoria não encontrada");
+        }
+        Produto produto = new Produto();
+        produto.setCategoria(categoria);
+        produto.setPreco(valor);
+        produto.setNome(nome);
+        produtoRepository.inserir(produto);
+    }
+
+    public List<Produto> listar() {
+        return produtoRepository.listar();
+    }
+
+    public Produto porCodigo(Integer codigo) throws Exception {
+        return produtoRepository.porCodigo(codigo);
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void editar(Produto produto) throws Exception {
+        produtoRepository.editar(produto);
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void deletar(Integer codigo) throws Exception {
+        produtoRepository.deletar(codigo);
+    } 
+
+}

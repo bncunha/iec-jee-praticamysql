@@ -1,10 +1,13 @@
 package model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,7 +24,8 @@ public class Produto {
 	@Column()
 	private Float preco;
 
-	@ManyToOne()
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+  @JoinColumn(name="idCategoria")
 	private Categoria categoria;
 
 	public int getId() {
@@ -46,6 +50,14 @@ public class Produto {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public String getNome() {
+		return this.nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 

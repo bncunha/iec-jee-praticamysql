@@ -1,0 +1,38 @@
+package repository;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import model.Produto;
+
+public class ProdutoRepositoryImpl implements ProdutoRepository {
+    private EntityManager em;
+    public ProdutoRepository setEntityManager(EntityManager em) {
+        this.em = em;
+        return this;
+    }
+    @Override
+    public void inserir(Produto produto) {
+        em.persist(produto);
+    }
+
+    @Override
+    public List<Produto> listar() {
+        return em.createQuery("select p from produtos p", Produto.class)
+            .getResultList();
+    }
+    @Override
+    public Produto porCodigo(Integer id) throws Exception {
+        return em.find(Produto.class, id);
+    }
+    @Override
+    public void editar(Produto produto) throws Exception {
+        em.merge(produto);
+    }
+    @Override
+    public void deletar(Integer codigo) throws Exception {
+        Produto produto = em.find(Produto.class, codigo);
+        em.remove(produto);
+    }
+}

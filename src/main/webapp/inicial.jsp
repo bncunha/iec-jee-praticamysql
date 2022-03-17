@@ -13,6 +13,9 @@
         	<a href="inserir.jsp">Inserir Nova Categoria</a>
         	&nbsp;&nbsp;&nbsp;       	        	
         </h2>
+        <h2>
+        	<a href="produtos/inserir">Inserir Novo produto</a>
+        </h2>
 	</center>
     <div align="center">
         <table border="1" cellpadding="5">
