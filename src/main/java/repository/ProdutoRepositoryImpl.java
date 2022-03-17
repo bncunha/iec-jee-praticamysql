@@ -18,6 +18,13 @@ public class ProdutoRepositoryImpl implements ProdutoRepository {
     }
 
     @Override
+    public List<Produto> listarByCodigoCategoria(Integer idCategoria) {
+        return em.createQuery("select p from Produto p WHERE p.categoria.codigo = :idCategoria", Produto.class)
+        .setParameter("idCategoria", idCategoria)
+        .getResultList();
+    }
+
+    @Override
     public List<Produto> listar() {
         return em.createQuery("select p from produtos p", Produto.class)
             .getResultList();

@@ -39,7 +39,7 @@
         <input type="submit" value="Inserir">
       </div>
 		</form>
-		<a href="../inicial.jsp"> Voltar </a>
+		<a href="../index.jsp"> Voltar </a>
 	</center>
 </body>
 </html>

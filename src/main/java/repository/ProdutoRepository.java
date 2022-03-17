@@ -8,6 +8,8 @@ public interface ProdutoRepository {
     void inserir(Produto produto);
     List<Produto> listar();
 
+    List<Produto> listarByCodigoCategoria(Integer idCategoria);
+
     Produto porCodigo(Integer id) throws Exception;
 
     void editar(Produto produto) throws Exception;

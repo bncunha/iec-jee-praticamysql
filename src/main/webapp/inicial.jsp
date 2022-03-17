@@ -23,12 +23,14 @@
             <tr>
                 <th>Codigo</th>
                 <th>Nome</th>
+                <th>Produtos</th>
                 <th>Acoes</th>                              
             </tr>
             <c:forEach var="categoria" items="${listaCategoria}">
                 <tr>
                     <td><c:out value="${categoria.codigo}" /></td>
                     <td><c:out value="${categoria.nome}" /></td>                   
+                    <td> <a href="produtos/listar?categoria=<c:out value='${categoria.codigo}' />">Ver Produtos</a> </td>                   
                     
                     <td>
                     	<a href="edit?id=<c:out value='${categoria.codigo}' />">Alterar</a>
