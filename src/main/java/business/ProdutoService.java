@@ -56,7 +56,21 @@ public class ProdutoService {
     }
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void editar(Produto produto) throws Exception {
+    public void editar(Integer idProduto, String nome, Float valor, Integer idCategoria) throws Exception {
+        Categoria categoria = categoriaService.porCodigo(idCategoria);
+        if (Objects.isNull(categoria)) {
+            throw new Exception("Categoria não encontrada");
+        }
+        Produto produto = produtoRepository.porCodigo(idProduto);
+        if (Objects.isNull(produto)) {
+            throw new Exception("Produto não encontrado");
+        }
+        System.out.println("OIIIIII");
+        System.out.println(idProduto);
+        produto.setCategoria(categoria);
+        produto.setPreco(valor);
+        produto.setNome(nome);
+        System.out.println(produto.getId());
         produtoRepository.editar(produto);
     }
 

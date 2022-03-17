@@ -16,7 +16,7 @@
 		<h1> Produtos da Categoria: <c:out value="${codigoCategoria}" /> </h1>
     <div align="center">
       <table border="1" cellpadding="5">
-          <caption><h2>Lista de Categorias</h2></caption>
+          <caption><h2>Lista de Produtos</h2></caption>
           <tr>
               <th>ID</th>
               <th>Nome</th>
@@ -29,7 +29,7 @@
                 <td><c:out value="${produto.nome}" /></td>                   
                 <td><c:out value="${produto.preco}" /></td>      
                 <td>
-                  <a href="editar?id=<c:out value='${produto.id}' />">Alterar</a>
+                  <a href="editar?id=<c:out value='${produto.id}' />&categoria=<c:out value='${codigoCategoria}' />">Alterar</a>
                   <br/>
                   <br/>
                   <a href="deletar?id=<c:out value='${produto.id}' />&categoria=<c:out value='${codigoCategoria}' />">Deletar</a>                    	
