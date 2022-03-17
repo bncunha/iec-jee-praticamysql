@@ -24,7 +24,7 @@ public class Produto {
 	@Column()
 	private Float preco;
 
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER)
   @JoinColumn(name="idCategoria")
 	private Categoria categoria;
 

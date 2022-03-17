@@ -37,7 +37,7 @@ public class InserirProduto extends HttpServlet {
 		
 		try {
 			service.inserir(nome, valor, idCategoria);	
-			response.sendRedirect(request.getContextPath() + "/produtos/listar.jsp");
+			response.sendRedirect(request.getContextPath() + "/index.jsp");
 		} catch (ProdutoException ex) {
 			ex.printStackTrace();
 			setCategorias(request);
