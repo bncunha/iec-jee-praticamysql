@@ -38,9 +38,8 @@ public class EditarProduto extends HttpServlet {
 		Integer idProduto = Integer.parseInt(request.getParameter("id"));
 		
 		try {
-			System.out.println("OLAAAA, " + idProduto);
 			service.editar(idProduto, nome, valor, idCategoria);	
-			response.sendRedirect(request.getContextPath() + "/index.jsp");
+			response.sendRedirect(request.getContextPath() + "/produtos/listar");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			PrintWriter out = response.getWriter();

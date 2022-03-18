@@ -26,9 +26,17 @@ public class ProdutoRepositoryImpl implements ProdutoRepository {
 
     @Override
     public List<Produto> listar() {
-        return em.createQuery("select p from produtos p", Produto.class)
+        return em.createQuery("select p from Produto p", Produto.class)
             .getResultList();
     }
+
+    @Override
+    public List<Produto> listarByNome(String nome) {
+        return em.createQuery("select p from Produto p where p.nome like :nome", Produto.class)
+        .setParameter("nome", "%" + nome + "%")
+        .getResultList();
+    }
+
     @Override
     public Produto porCodigo(Integer id) throws Exception {
         return em.find(Produto.class, id);

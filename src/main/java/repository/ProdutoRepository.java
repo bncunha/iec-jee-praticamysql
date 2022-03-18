@@ -10,9 +10,12 @@ public interface ProdutoRepository {
 
     List<Produto> listarByCodigoCategoria(Integer idCategoria);
 
+    List<Produto> listarByNome(String nome);
+    
     Produto porCodigo(Integer id) throws Exception;
 
     void editar(Produto produto) throws Exception;
 
     void deletar(Integer codigo) throws Exception;
+
 }

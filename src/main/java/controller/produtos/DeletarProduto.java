@@ -19,9 +19,8 @@ public class DeletarProduto extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			Integer codigo = Integer.parseInt(request.getParameter("id"));
-			Integer codigoCategoria = Integer.parseInt(request.getParameter("categoria"));
 			service.deletar(codigo);
-			response.sendRedirect(request.getContextPath() + "/produtos/listar?categoria=" + codigoCategoria);			
+			response.sendRedirect(request.getContextPath() + "/produtos/listar");			
 		} catch (Exception ex) {
 			throw new ServletException(ex);
 		}

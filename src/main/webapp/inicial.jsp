@@ -14,7 +14,7 @@
         	&nbsp;&nbsp;&nbsp;       	        	
         </h2>
         <h2>
-        	<a href="produtos/inserir">Inserir Novo produto</a>
+        	<a href="produtos/listar"> Lista de Produtos</a>
         </h2>
 	</center>
     <div align="center">

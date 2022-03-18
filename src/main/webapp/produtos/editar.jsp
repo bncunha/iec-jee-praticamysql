@@ -33,7 +33,7 @@
         <select id="categoria" name="categoria" aria-label="Categoria" required value="${produto.categoria.codigo}">
           <option disabled value=""> Selecione </option>
           <c:forEach var="categoria" items="${listaCategoria}">
-            <option value="<c:out value='${categoria.codigo}'/>">
+            <option value="<c:out value='${categoria.codigo}'/>" ${categoria.codigo == produto.categoria.codigo ? 'selected="selected"' : ''}>
               <c:out value="${categoria.nome}" />
             </option>
           </c:forEach>

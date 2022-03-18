@@ -51,6 +51,10 @@ public class ProdutoService {
         return produtoRepository.listarByCodigoCategoria(codigoCategoria);
     }
 
+    public List<Produto> listarPorNome(String nome) {
+        return produtoRepository.listarByNome(nome);
+    }
+
     public Produto porCodigo(Integer codigo) throws Exception {
         return produtoRepository.porCodigo(codigo);
     }

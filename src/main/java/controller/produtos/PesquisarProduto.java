@@ -1,7 +1,6 @@
 package controller.produtos;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,18 +15,17 @@ import javax.servlet.http.HttpServletResponse;
 import business.ProdutoService;
 import model.Produto;
 
-@WebServlet(urlPatterns = "/produtos/listar")
-public class ListarProduto extends HttpServlet{
+@WebServlet(urlPatterns = "/produtos/pesquisar")
+public class PesquisarProduto extends HttpServlet{
 	@EJB
 	private ProdutoService service;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			List<Produto> listaProdutos;
-			if (Objects.nonNull(request.getParameter("categoria"))) {
-				Integer codigoCategoria = Integer.parseInt(request.getParameter("categoria"));
-				listaProdutos = service.listarPorCodigoCategoria(codigoCategoria);
-				request.setAttribute("codigoCategoria", codigoCategoria);
+			if (Objects.nonNull(request.getParameter("nome"))) {
+				String nome = request.getParameter("nome");
+				listaProdutos = service.listarPorNome(nome);
 			} else {
 				listaProdutos = service.listar();
 			}

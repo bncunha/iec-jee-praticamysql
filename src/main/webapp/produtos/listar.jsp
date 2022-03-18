@@ -13,27 +13,47 @@
 </head>
 <body>
     <center>
-		<h1> Produtos da Categoria: <c:out value="${codigoCategoria}" /> </h1>
+    <c:if test="${not empty codigoCategoria}">
+      <h1> Produtos da Categoria: <c:out value="${codigoCategoria}" /> </h1>
+    </c:if>
     <div align="center">
+      <h2>Lista de Produtos</h2>
+      <c:if test="${empty codigoCategoria}">
+        <h2>
+          <a href="inserir"> Adicionar produto </a>
+        </h2>
+
+		    <form action="pesquisar" method="GET" style="margin: 30px;">
+          <input type="text" name="nome" />
+          <button type="submit"> Pesquisar </button>
+        </form>
+      </c:if>
+
       <table border="1" cellpadding="5">
-          <caption><h2>Lista de Produtos</h2></caption>
           <tr>
               <th>ID</th>
               <th>Nome</th>
+              <th>Categoria</th>
               <th>Preço</th>
-              <th>Ações</th>
+              <c:if test="${empty codigoCategoria}">
+                <th>Ações</th>
+              </c:if>
+
           </tr>
           <c:forEach var="produto" items="${listaProdutos}">
               <tr>
                 <td><c:out value="${produto.id}" /></td>
                 <td><c:out value="${produto.nome}" /></td>                   
+                <td><c:out value="${produto.categoria.nome}" /></td>                   
                 <td><c:out value="${produto.preco}" /></td>      
-                <td>
-                  <a href="editar?id=<c:out value='${produto.id}' />&categoria=<c:out value='${codigoCategoria}' />">Alterar</a>
-                  <br/>
-                  <br/>
-                  <a href="deletar?id=<c:out value='${produto.id}' />&categoria=<c:out value='${codigoCategoria}' />">Deletar</a>                    	
-                </td>             
+                <c:if test="${empty codigoCategoria}">
+                  <td>
+                    <a href="editar?id=<c:out value='${produto.id}' />">Alterar</a>
+                    <br/>
+                    <br/>
+                    <a href="deletar?id=<c:out value='${produto.id}' />">Deletar</a>                    	
+                  </td>
+                </c:if>        
               </tr>
           </c:forEach>
       </table>
